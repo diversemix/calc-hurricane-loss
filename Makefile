@@ -10,6 +10,8 @@ VENV_ROOT=venv
 VENV_BIN=$(VENV_ROOT)/bin
 VENV_PIP=$(VENV_BIN)/pip
 VENV_PYTHON=$(VENV_BIN)/python
+UID := $(shell id -u)
+GID := $(shell id -g)
 
 .PHONY: export all install clean venv test test-all test-dist test-sdist test-bdist-wheel
 
@@ -32,7 +34,9 @@ requirements:
 
 install: venv
 	@echo Installing dev requirements...
-	$(VENV_PIP) install --upgrade -r $(REQUIREMENTS)
+	ls -l $(VENV_PIP) 
+	pwd
+	./$(VENV_PIP) install --upgrade -r $(REQUIREMENTS)
 
 	@echo Installing gethurricaneloss...
 	$(VENV_PIP) install --upgrade --editable .
@@ -74,8 +78,7 @@ venv:
 		fi; \
 	fi
 
-
-docker:
+docker: clean
 	docker build . -t ghl-dev-tester
 	docker run --rm -it -v $(PWD):/app --user $(UID):$(GID) ghl-dev-tester
 
