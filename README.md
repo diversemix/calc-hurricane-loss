@@ -60,3 +60,8 @@ make
 - logging - 
 - multiprocessor - https://ray.readthedocs.io/en/latest/
 - command line args
+
+
+~~~
+No mp = 34s
+Pool = 23s

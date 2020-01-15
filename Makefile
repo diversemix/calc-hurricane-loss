@@ -8,7 +8,7 @@ SYSTEM_PYTHON=python3
 
 VENV_ROOT=venv
 VENV_BIN=$(VENV_ROOT)/bin
-VENV_PIP=$(VENV_BIN)/pip3
+VENV_PIP=$(VENV_BIN)/pip
 VENV_PYTHON=$(VENV_BIN)/python
 
 .PHONY: export all install clean venv test test-all test-dist test-sdist test-bdist-wheel
@@ -75,18 +75,23 @@ venv:
 	fi
 
 
+docker:
+	docker build . -t ghl-dev-tester
+	docker run --rm -it -v $(PWD):/app --user $(UID):$(GID) ghl-dev-tester
+
 ###############################################################################
 # Testing
 ###############################################################################
 
 lint:
 	@echo Linting...
-	$(VENV_BIN)/flake8  --ignore=E501 ./gethurricaneloss
+	$(VENV_BIN)/mypy ./loss_framework/ ./gethurricaneloss ./tests/loss_framework ./tests/gethurricaneloss
+	$(VENV_BIN)/flake8  --ignore=E501 ./loss_framework/ ./gethurricaneloss ./tests/loss_framework ./tests/gethurricaneloss
 	@echo
 
 test: lint
 	@echo Running tests...
-	$(VENV_BIN)/py.test --cov ./gethurricaneloss --cov ./tests --doctest-modules --verbose ./gethurricaneloss ./tests
+	$(VENV_BIN)/py.test --cov=./gethurricaneloss --cov=./loss_framework ./tests/loss_framework ./tests/gethurricaneloss
 	@echo
 
 

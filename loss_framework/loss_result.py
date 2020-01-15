@@ -9,11 +9,11 @@ class LossResult:
     num_years: int = 0
     total_loss: int = 0
 
-    def add_annual_loss(self, loss: int):
+    def add_annual_loss(self, loss: int) -> None:
         self.num_years += 1
         self.total_loss += loss
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.num_years:
             return "Mean loss = {:.3f} per year calculated over {} years.".format(self.total_loss / self.num_years, self.num_years)
         else:

@@ -1,21 +1,22 @@
-from .hurricane_region import HurricaneRegions
-from .hurricane_model import HurricaneModel
+import logging
 from .loss_result import LossResult
+from .event_model import EventModel
+from .event_region import EventRegions
 
 
-class HurricaneCalculator:
+class Calculator:
     """
     The main calculator for the application.
 
     Responsibility - to store the hurricane data for regions for calculation of loss
     """
 
-    def __init__(self, log, model: HurricaneModel, regions: HurricaneRegions):
+    def __init__(self, log: logging.Logger, model: EventModel, regions: EventRegions):
         self.regions = regions
         self.model = model
         self.log = log
 
-    def gethurricaneloss(self, n_years: int) -> LossResult:
+    def get_loss(self, n_years: int) -> LossResult:
         result = LossResult()
 
         for year in range(n_years):
@@ -23,8 +24,9 @@ class HurricaneCalculator:
             for region in self.regions:
                 events = self.model.fn_event_model(region.event_rate)
                 loss = self.model.fn_loss_model(region.loss_mean, region.loss_stddev, events)
-                year_loss += sum(loss)
-                self.log.debug("{:10}: Year={}, Events={}, Loss={}".format(region.name, year, events, year_loss))
+                loss_total = sum(loss)
+                year_loss += loss_total
+                self.log.debug("{:10}: Year={}, Events={}, Loss={}".format(region.name, year, events, loss_total))
             result.add_annual_loss(year_loss)
 
         return result
