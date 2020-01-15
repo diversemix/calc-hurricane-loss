@@ -30,7 +30,8 @@ tests_require = [
 
 
 install_requires = [
-    'wheel'
+    'wheel',
+    'numpy',
 ]
 
 

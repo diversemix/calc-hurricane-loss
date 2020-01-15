@@ -17,7 +17,17 @@ VENV_PYTHON=$(VENV_BIN)/python
 export PATH := $(VENV_BIN):$(PATH)
 
 
-all: uninstall-gethurricaneloss install test
+all: requirements uninstall-gethurricaneloss install test
+
+requirements:
+	$(SYSTEM_PYTHON) -c "import dataclasses"
+	@echo 
+	@echo If this fails try:
+	@echo "    sudo apt install python3.7 python3.7-venv python3.7-dev"
+	@echo
+	$(SYSTEM_PYTHON) --version
+	@echo OK!
+	@echo
 
 
 install: venv
