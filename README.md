@@ -53,8 +53,10 @@ make
   - Configure use of `tox` and `setup.py` - this was by-and-large copied from (httpie)[https://github.com/jakubroztocil/httpie] as a good solid python command line application to learn from.
   - The addition of a `Makefile`, I tend to use make files for all my projects and again, saw that `httpie` followed this best-practice too.
 
+ - Made use of(typing)[https://docs.python.org/3/library/typing.html]
 ## Todo
 
-- config
-- multiprocessor
+- 
+- logging - 
+- multiprocessor - https://ray.readthedocs.io/en/latest/
 - command line args

@@ -32,6 +32,7 @@ tests_require = [
 install_requires = [
     'wheel',
     'numpy',
+    'click',
 ]
 
 
@@ -71,7 +72,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'ghl = gethurricaneloss.__main__:main',
+            'gethurricaneloss = gethurricaneloss.__main__:main',
         ],
     },
     extras_require=extras_require,
