@@ -1,7 +1,8 @@
 import logging
 import click
 import numpy as np
-
+from typing import Any
+from gethurricaneloss import __version__ as app_version
 from loss_framework import (
     Calculator,
     BatchedCalculator,
@@ -11,8 +12,16 @@ from loss_framework import (
 )
 
 
+def print_version(ctx: Any, param: Any, value: Any) -> None:
+    if not value or ctx.resilient_parsing:
+        return
+    click.echo("gethurricaneloss=={}".format(app_version))
+    ctx.exit()
+
+
 @click.command()
-@click.option('-n', '--num_monte_carlo_samples', default=1, help='Number of simulation years.', type=int)
+@click.option('--version', is_flag=True, callback=print_version, expose_value=False, is_eager=True)
+@click.option('-n', '--num_monte_carlo_samples', default=100, help='Number of simulation years.', type=int)
 @click.option('-v/-i', '--verbose/--info', default=False, help='Enables debug logging.')
 @click.option('-m/-s', '--multicpu/--singlecpu', default=False, help='Enables use of multipe CPUs.')
 @click.argument('florida_landfall_rate', nargs=1, type=int)

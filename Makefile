@@ -32,7 +32,7 @@ requirements:
 	@echo
 
 
-install: venv
+install: requirements venv
 	@echo Installing dev requirements...
 	ls -l $(VENV_PIP) 
 	pwd
@@ -117,7 +117,7 @@ test-sdist: clean venv
 	@echo Testing sdist build an installation...
 	$(VENV_PYTHON) setup.py sdist
 	$(VENV_PIP) install --force-reinstall --upgrade dist/*.gz
-	$(VENV_BIN)/ghl --version
+	$(VENV_BIN)/gethurricaneloss --version
 	@echo
 
 
@@ -126,7 +126,7 @@ test-bdist-wheel: clean venv
 	$(VENV_PIP) install wheel
 	$(VENV_PYTHON) setup.py bdist_wheel
 	$(VENV_PIP) install --force-reinstall --upgrade dist/*.whl
-	$(VENV_BIN)/ghl --version
+	$(VENV_BIN)/gethurricaneloss --version
 	@echo
 
 

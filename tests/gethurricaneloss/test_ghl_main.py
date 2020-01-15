@@ -7,7 +7,7 @@ def test_main_verbose_muli() -> None:
                               10000, 1, 0)
 
     assert result.num_years == 10
-    assert result.total_loss > 540000
+    assert result.total_loss > 530000
     assert result.total_loss < 560000
 
 
@@ -17,5 +17,5 @@ def test_main_info_single() -> None:
                               10000, 1, 0)
 
     assert result.num_years == 10
-    assert result.total_loss > 540000
+    assert result.total_loss > 530000
     assert result.total_loss < 560000
