@@ -98,6 +98,8 @@ make uninstall-gethurricaneloss
   - `EventRegion` : Specifies a region and the stats associated with that event.
   - `LossResult` : This is the result of any calculation performed.
 
+- Final note on speed, my six-year-old laptop reports it has 4 CPUs in reality it only has two with hyperthreading, I have noticed that it runs just as quick in 2 batches as in 4 - because of this reason.
+ 
 ## Issues / Like to do
 
 - Add github action to get some CI working.
