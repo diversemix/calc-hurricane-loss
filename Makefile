@@ -34,8 +34,6 @@ requirements:
 
 install: requirements venv
 	@echo Installing dev requirements...
-	ls -l $(VENV_PIP) 
-	pwd
 	./$(VENV_PIP) install --upgrade -r $(REQUIREMENTS)
 
 	@echo Installing gethurricaneloss...
@@ -86,7 +84,7 @@ docker: clean
 # Testing
 ###############################################################################
 
-lint:
+lint: install
 	@echo Linting...
 	$(VENV_BIN)/mypy ./loss_framework/ ./gethurricaneloss ./tests/loss_framework ./tests/gethurricaneloss
 	$(VENV_BIN)/flake8  --ignore=E501 ./loss_framework/ ./gethurricaneloss ./tests/loss_framework ./tests/gethurricaneloss
