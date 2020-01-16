@@ -26,14 +26,23 @@ The model is parameterized by:
 - `gulf_mean`, `gulf_stddev` - The LogNormal parameters that describe the economic loss of a landfalling hurricane in the Gulf stats.
 
 options:
+
 - `--version` - Reports the version then exits.
 - `-n`, `--num_monte_carlo_samples` - Number of samples (i.e. simulation years) to run, (defaults to 100)
 - `-v/-i`, `--verbose/--info` - This switches logging between verbose or just info output (default)
-- `-m/-s`, `--multicpu/--singlecpu` - This switches the calculation to be done on a single cpu (default) or all available. 
+- `-m/-s`, `--multicpu/--singlecpu` - This switches the calculation to be done on a single cpu (default) or all available.
+
+The result will print the mean loss is in the same units as the economic loss specified in the input.
+Also the loss is rounded to 3dp a typical command and it's output is shown below:
+
+```{text}
+$ gethurricaneloss -n 10000 10 5 .2 20 7 .6
+Mean loss = 27732.506 per year calculated over 10000 years.
+```
 
 ## Development Usage
 
-:warning: **NOTE** - To develop this locally you will need python3.7 as application uses [dataclasses](https://docs.python.org/3/library/dataclasses.html) 
+:warning: **NOTE** - To develop this locally you will need python3.7 as application uses [dataclasses](https://docs.python.org/3/library/dataclasses.html)
 
 All the necessary commands needed for development, build and test are encapsulated in the `Makefile`.
 To perform a complete reinstall and test, from within the root folder of the project just type:
