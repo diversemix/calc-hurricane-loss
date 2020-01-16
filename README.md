@@ -43,6 +43,7 @@ Mean loss = 27732.506 per year calculated over 10000 years.
 ## Development Usage
 
 :warning: **NOTE** - To develop this locally you will need python3.7 as application uses [dataclasses](https://docs.python.org/3/library/dataclasses.html)
+This can be easily checked with the make command `make requirements`
 
 All the necessary commands needed for development, build and test are encapsulated in the `Makefile`.
 To perform a complete reinstall and test, from within the root folder of the project just type:
