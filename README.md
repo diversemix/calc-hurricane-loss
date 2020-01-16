@@ -88,9 +88,10 @@ make uninstall-gethurricaneloss
   - `EventRegion` : Specifies a region and the stats associated with that event.
   - `LossResult` : This is the result of any calculation performed.
 
-## Issues
+## Issues / Like to do
 
-- Test Coverage - This seems to be generating some warnings I cannot remove
+- Add github action to get some CI working.
+- Fix test Coverage.py warnings - This seems to be generating some warnings I cannot remove.
 - I don't think its an issue but not had chance to check: https://stackoverflow.com/questions/27098529/numpy-float64-vs-python-float
 - Sensible standard deviations - though looking around the internet this does not seem straight forward. Perhaps we could warn if the stddev > 2 ?
 - There are more tests that I would like to get in place. But I'd like to ask more questions first.
