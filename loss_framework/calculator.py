@@ -18,6 +18,7 @@ class Calculator:
 
     def get_loss(self, n_years: int) -> LossResult:
         result = LossResult()
+        isLogging = self.log.isEnabledFor(logging.DEBUG)
 
         for year in range(n_years):
             year_loss = 0
@@ -26,7 +27,8 @@ class Calculator:
                 loss = self.model.fn_loss_model(region.loss_mean, region.loss_stddev, events)
                 loss_total = sum(loss)
                 year_loss += loss_total
-                self.log.debug("{:10}: Year={}, Events={}, Loss={}".format(region.name, year, events, loss_total))
+                if isLogging:
+                    self.log.debug("{:10}: Year={}, Events={}, Loss={}".format(region.name, year, events, loss_total))
             result.add_annual_loss(year_loss)
 
         return result
