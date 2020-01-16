@@ -42,7 +42,7 @@ Mean loss = 27732.506 per year calculated over 10000 years.
 
 ## Development Usage
 
-:warning: **NOTE** - To develop this locally you will need python3.7 as application uses [dataclasses](https://docs.python.org/3/library/dataclasses.html)
+:warning: **NOTE** - To develop this locally you will need python3.7 as application uses [dataclasses](https://docs.python.org/3/library/dataclasses.html).
 This can be easily checked with the make command `make requirements`
 
 All the necessary commands needed for development, build and test are encapsulated in the `Makefile`.
@@ -62,12 +62,12 @@ Here are a complete set of make commands that can be used:
 
 ```{bash}
 make all
-make requirements:
+make requirements
 make install
-make clean:
-make venv:
+make clean
+make venv
 make docker
-make lint:
+make lint
 make test
 make test-all
 make test-dist
@@ -92,7 +92,7 @@ make uninstall-gethurricaneloss
 - There is a generic `loss-framework` that specifies the following:
 
   - `BatchArgument` : This is used as the argument list for each spawned process.
-  - `BatchedCalculator` : This calculator is used when utilizing all available CPUs
+  - `BatchedCalculator` : This calculator is used when utilizing all available CPUs. It simply wraps (decorates) the calculator below.
   - `Calculator` : This calculator is used with using a single core.
   - `EventModel` : Specifies the distrubtion functions for a particular event.
   - `EventRegion` : Specifies a region and the stats associated with that event.
