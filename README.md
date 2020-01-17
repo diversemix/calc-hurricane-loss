@@ -11,6 +11,21 @@ The problem was broken down into a generic `loss-framework` which can model regi
 Then this was used to build upon for this specific case for hurricanes.
 However, it should be relatively easy to extend for more regions or different event models.
 
+## Quick Start
+
+Run the following:
+
+```{bash}
+make install
+source venv/bin/activate
+```
+
+Then you can run a command like:
+
+```{bash}
+gethurricaneloss -n 100000 10 2.3 0.1 23 3.4 0.6
+```
+
 ## Usage
 
 ```{bash}
@@ -99,7 +114,7 @@ make uninstall-gethurricaneloss
   - `LossResult` : This is the result of any calculation performed.
 
 - Final note on speed, my six-year-old laptop reports it has 4 CPUs in reality it only has two with hyperthreading, I have noticed that it runs just as quick in 2 batches as in 4 - because of this reason.
- 
+
 ## Issues / Like to do
 
 - Add github action to get some CI working.
