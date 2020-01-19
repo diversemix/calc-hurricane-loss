@@ -12,7 +12,6 @@ class EventDefinition {
       this->event_distribution = std::poisson_distribution<>(this->event_rate);
       this->loss_distribution = std::lognormal_distribution<>(this->loss_mean, this->loss_stddev);
       this->generator = std::mt19937(this->rd());
-
     }
 
     long double loss_in_year() {
@@ -31,10 +30,9 @@ class EventDefinition {
     long double event_rate;
     long double loss_mean;
     long double loss_stddev;
-
     std::random_device rd;
 
-      // https://en.cppreference.com/w/cpp/numeric/random/poisson_distribution/poisson_distribution
+    // https://en.cppreference.com/w/cpp/numeric/random/poisson_distribution/poisson_distribution
     std::poisson_distribution<> event_distribution;
     std::lognormal_distribution<> loss_distribution;
     std::mt19937 generator;
@@ -42,7 +40,7 @@ class EventDefinition {
 };
 
 int main() {
-  const int n_years = 100000; 
+  const int n_years = 1e6; 
 
   EventDefinition * florida = new EventDefinition(10, 2.2, 0.2);
   EventDefinition * gulf = new EventDefinition(22, 1.1, 0.1);
@@ -51,8 +49,7 @@ int main() {
 
   for (int i = 0; i < n_years; ++i) {
     total_loss += florida->loss_in_year();
-    total_loss += florida->loss_in_year();
-
+    total_loss += gulf->loss_in_year();
   }
 
   std::cout << "Mean loss=" << total_loss / n_years 

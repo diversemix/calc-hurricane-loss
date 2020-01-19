@@ -22,13 +22,15 @@ class Calculator:
 
         for year in range(n_years):
             year_loss = 0
+            t_events = 0
             for region in self.regions:
                 events = self.model.fn_event_model(region.event_rate)
+                t_events += events
                 loss = self.model.fn_loss_model(region.loss_mean, region.loss_stddev, events)
                 loss_total = sum(loss)
                 year_loss += loss_total
                 if isLogging:
                     self.log.debug("{:10}: Year={}, Events={}, Loss={}".format(region.name, year, events, loss_total))
-            result.add_annual_loss(year_loss)
+            result.add_annual_loss(year_loss, t_events)
 
         return result
