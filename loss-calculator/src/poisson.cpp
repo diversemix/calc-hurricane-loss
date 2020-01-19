@@ -2,7 +2,6 @@
 #include <iostream>
 #include <random>
 #include <thread>
-#include <mutex>
 
 class EventDefinition {
   public: 
@@ -56,33 +55,30 @@ int multi_calculator(int n_years, EventDefinition & florida, EventDefinition & g
   std::vector<std::thread> threads(num_cpus);
   std::vector<long double> results(num_cpus);
 
-  std::mutex iomutex;
+  const int new_years = int(n_years / num_cpus);
   for (unsigned i = 0; i < num_cpus; ++i) {
     
-    threads[i] = std::thread([&iomutex, i, num_cpus, &results, n_years, florida, gulf] {
-        {
-          std::lock_guard<std::mutex> iolock(iomutex);
-          std::cout << "Thread #" << i << ": on CPU " << sched_getcpu() << "\n";
-        }      
+    threads[i] = std::thread([i, num_cpus, &results, new_years, florida, gulf] {
       EventDefinition newFlorida = EventDefinition(florida);
       EventDefinition newGulf = EventDefinition(gulf);
-      long double total_loss = 0;
+      long double loss = 0;
       
-      for (int i = 0; i < int(n_years / num_cpus); ++i) {
-        total_loss += newFlorida.loss_in_year();
-        total_loss += newGulf.loss_in_year();
+      for (int i = 0; i < new_years; ++i) {
+        loss += newFlorida.loss_in_year();
+        loss += newGulf.loss_in_year();
       }
 
-      results[i] = total_loss;
+      results[i] = loss;
     });
   }
 
   for (auto& t : threads) {
     t.join();
   }
+
   long double total_loss = 0;
-  for (auto it : results) {
-    total_loss += it;
+  for (auto loss : results) {
+    total_loss += loss;
   }
 
   return total_loss;
