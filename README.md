@@ -1,5 +1,7 @@
 # calc-hurricane-loss
 Uses a Monte-Carlo simulation to calculate hurricane loss
+> :warning: :warning: :warning: There is now a new repo [with-cpp](https://github.com/diversemix/calc-hurricane-loss-with-cpp)
+which reduces exectution time of 1e6 samples by ten-fold (for me from 23s to 1.5s).
 
 ## Description
 
@@ -29,7 +31,7 @@ gethurricaneloss -n 100000 10 2.3 0.1 23 3.4 0.6
 ## Usage
 
 ```{bash}
-gethurricaneloss [options] florida_landfall_rate florida_mean florida_stddev gulf_landfall_rate gulf_mean gulf_stddev 
+gethurricaneloss [options] florida_landfall_rate florida_mean florida_stddev gulf_landfall_rate gulf_mean gulf_stddev
 ```
 
 Calculates the average annual hurricane loss in $Billions for a simple hurricane model.
