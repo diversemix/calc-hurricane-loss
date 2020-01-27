@@ -4,7 +4,7 @@ REQUIREMENTS=requirements-dev.txt
 
 
 # Only used to create our venv.
-SYSTEM_PYTHON=python3
+SYSTEM_PYTHON=python3.7
 
 VENV_ROOT=venv
 VENV_BIN=$(VENV_ROOT)/bin
