@@ -87,7 +87,7 @@ docker: clean
 lint: install
 	@echo Linting...
 	$(VENV_BIN)/mypy ./loss_framework/ ./gethurricaneloss ./tests/loss_framework ./tests/gethurricaneloss
-	$(VENV_BIN)/flake8  --ignore=E501 ./loss_framework/ ./gethurricaneloss ./tests/loss_framework ./tests/gethurricaneloss
+	$(VENV_BIN)/flake8  ./loss_framework/ ./gethurricaneloss ./tests/loss_framework ./tests/gethurricaneloss
 	@echo
 
 test: lint
