@@ -4,7 +4,8 @@ REQUIREMENTS=requirements-dev.txt
 
 
 # Only used to create our venv.
-SYSTEM_PYTHON=python3.7
+PYVER=3.8
+SYSTEM_PYTHON=python${PYVER}
 
 VENV_ROOT=venv
 VENV_BIN=$(VENV_ROOT)/bin
@@ -25,7 +26,7 @@ requirements:
 	$(SYSTEM_PYTHON) -c "import dataclasses"
 	@echo 
 	@echo If this fails try:
-	@echo "    sudo apt install python3.7 python3.7-venv python3.7-dev"
+	@echo "    sudo apt install python${PYVER} python${PYVER}-venv python${PYVER}-dev"
 	@echo
 	$(SYSTEM_PYTHON) --version
 	@echo OK!
@@ -54,7 +55,7 @@ clean:
 venv:
 	@echo Creating a Python environment $(VENV_ROOT)
 
-	virtualenv --python=/usr/bin/python3.7 --prompt gethurricaneloss $(VENV_ROOT)
+	virtualenv --python=/usr/bin/python${PYVER} --prompt gethurricaneloss $(VENV_ROOT)
 
 	@echo
 	@echo done.
